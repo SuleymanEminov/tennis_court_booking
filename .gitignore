@@ -1,2 +1,9 @@
 firebase_sdk.py
 db.sqlite3
+config.py
+__pycache__
+```
+.ds_store
+```
+erd_diagram_db.txt
+realtimedb.json
