@@ -11,11 +11,6 @@ class UserCreationForm(UserCreationForm):
 
 
 
-class CoachCreationForm(UserCreationForm):
-    class Meta:
-        model = Coach
-        fields = ['username', 'first_name', 'last_name', 'email']
-
 
 class BookingForm(ModelForm):
     class Meta:

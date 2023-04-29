@@ -1,0 +1,11 @@
+{% extends "tcb/layout.html" %}
+
+{% block body %}
+
+<form action="{% url 'tcb:create_booking'%}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input class="btn btn-primary" type="submit" value="Book">
+</form>
+    
+{% endblock %}

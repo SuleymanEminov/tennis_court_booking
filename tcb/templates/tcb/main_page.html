@@ -2,11 +2,12 @@
 
 {% block body %}
 
-<h1>Court Booking System</h1>
-<p>{% if user.is_authenticated %}</p>
-<p>{% for booking in bookings%}</p>
-<p>{{booking}}</p>
-<p>{% endfor %}</p>
-<p>{% endif %}</p>
+<h1>Court Booking System - Main Page</h1>
+{% if user.is_authenticated %}
+    <h2>Hello, {{user}}</h2>
+    <h3><a href="{%url 'tcb:bookings' %}">Display bookings</a></h3>
+{% endif %}
+
+
     
 {% endblock %}

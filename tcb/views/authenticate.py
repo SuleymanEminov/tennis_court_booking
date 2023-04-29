@@ -12,9 +12,9 @@ def login_view(request):
     if request.method == "POST":
 
         # Attempt to sign user in
-        username = request.POST["username"]
+        email = request.POST["email"]
         password = request.POST["password"]
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, email=email, password=password)
 
         # Check if authentication successful
         if user is not None:
@@ -22,7 +22,7 @@ def login_view(request):
             return HttpResponseRedirect(reverse("tcb:index"))
         else:
             return render(request, "tcb/login.html", {
-                "message": "Invalid username and/or password."
+                "message": "Invalid email and/or password."
             })
     else:
         return render(request, "tcb/login.html")
@@ -35,9 +35,9 @@ def logout_view(request):
 # create a member object when a user registers
 def register(request):
     if request.method == "POST":
-        username = request.POST["username"]
         first_name = request.POST["first_name"]
         last_name = request.POST["last_name"]
+        username = f"{first_name}{last_name}"
         email = request.POST["email"]
         # phone_number = request.POST["phone_number"]
 
@@ -63,6 +63,6 @@ def register(request):
                 "message": "Username already taken."
             })
         login(request, user)
-        return HttpResponseRedirect(reverse("index"))
+        return HttpResponseRedirect(reverse("tcb:index"))
     else:
         return render(request, "tcb/register.html")

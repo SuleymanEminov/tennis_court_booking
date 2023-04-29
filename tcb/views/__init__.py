@@ -1,3 +1,4 @@
 from .authenticate import *
 from .index import *
-from .booking import *
+from .bookings import *
+from .user_profile import *

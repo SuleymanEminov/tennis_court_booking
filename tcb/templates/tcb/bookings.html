@@ -1,0 +1,12 @@
+{% extends "tcb/layout.html" %}
+
+{% block body %}
+
+<h1>Bookings</h1>
+<p>{% if user.is_authenticated %}</p>
+<p>{% for booking in bookings%}</p>
+<p>{{booking}}</p>
+<p>{% endfor %}</p>
+<p>{% endif %}</p>
+    
+{% endblock %}

@@ -129,3 +129,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Path: tennis_court_booking/settings.py
 AUTH_USER_MODEL = 'tcb.User'
 
+
+# added to enable email authentication
+AUTHENTICATION_BACKENDS = ['tcb.backends.EmailBackend']

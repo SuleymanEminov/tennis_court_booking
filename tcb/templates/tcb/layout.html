@@ -17,11 +17,22 @@
             {% endif %}
         </div>
         <ul class="nav">
+            <li>
+                <a class="nav-link" href="{% url 'tcb:index' %}">Home</a>
+            </li>
             
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'tcb:logout' %}">Log Out</a>
-                </li>
+            <li>
+                <a class="nav-link" href="{% url 'tcb:user_profile' %}">Profile</a>
+            <li>
+                <a class="nav-link" href="{% url 'tcb:bookings' %}">Bookings</a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'tcb:create_booking' %}">Book a Court</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'tcb:logout' %}">Log Out</a>
+            </li>
             {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'tcb:login' %}">Log In</a>
