@@ -2,13 +2,13 @@
 
 {% block body %}
 
-    <h2>Register</h2>
+    <h2 class="col-lg-4 offset-lg-4">Register</h2>
 
     {% if message %}
         <div>{{ message }}</div>
     {% endif %}
 
-    <form action="{% url 'tcb:register' %}" method="post">
+    <form action="{% url 'tcb:register' %}" method="post" class="col-lg-4 offset-lg-4">
         {% csrf_token %}
         
         <div class="form-group">
@@ -29,9 +29,10 @@
         <div class="form-group">
             <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
         </div>
-        <input class="btn btn-primary" type="submit" value="Register">
+        <input class="btn btn-primary btn-block mb-4" type="submit" value="Register">
     </form>
-
+<p class="col-lg-4 offset-lg-4">
     Already have an account? <a href="{% url 'tcb:login' %}">Log In here.</a>
+</p>
 
 {% endblock %}

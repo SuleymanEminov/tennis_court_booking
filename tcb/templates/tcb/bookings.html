@@ -3,10 +3,57 @@
 {% block body %}
 
 <h1>Bookings</h1>
-<p>{% if user.is_authenticated %}</p>
-<p>{% for booking in bookings%}</p>
-<p>{{booking}}</p>
-<p>{% endfor %}</p>
-<p>{% endif %}</p>
+{% if user.is_authenticated %}
+<div class="container">
+    <table class="table table-bordered table-hover text-white">
+        
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Court</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Coach</th>
+                <th>Is Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings%}
+            <tr data-href="{%url 'tcb:booking' booking.id%}">
+                <td>{{booking.member}}</td>
+                <td>{{booking.coach}}</td>
+                <td>{{booking.court}}</td>
+                <td>{{booking.date}}</td>
+                <td>{{booking.start_time}}</td>
+                <td>{{booking.end_time}}</td>
+                <td>{{booking.is_paid}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endif %}
+<script>
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     const rows = document.querySelectorAll("tr[data-href]");
+
+    //     rows.forEach(row => {
+    //         row.addEventListener("click", () => {
+    //             window.location.href = row.dataset.href;
+    //         });
+    //     });
+    // });
+
+
+    // add event listener with jquery
+    $(document).ready(function() {
+        $(document.body).on("click", "tr[data-href]", function() {
+            window.location.href = this.dataset.href;
+        });
+    });
+
+</script>
     
 {% endblock %}

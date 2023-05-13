@@ -1,0 +1,59 @@
+{% extends 'tcb/layout.html' %}  <!-- Extend your base template if applicable -->
+{%load make_range%}
+{% block body %}
+
+<div>
+  <form action="{%url 'tcb:calendar'%}" method="POST">
+    {% csrf_token %}
+    <label for="location">Select a location</label>
+    <select id="location" name="location">
+      {% for location in locations %}
+        <option value="{{ location.0 }}">{{ location.1 }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+<div id="calendar">
+  
+      <table class="table text-white">
+          <thead>
+              <tr>
+                    <th></th>
+                  <th>Court</th>
+                  {% for court_number in court_numbers %}
+                      <th>{{ court_number }}</th>
+                  {% endfor %}
+              </tr>
+          </thead>
+          <tbody>
+            {% for hour in 9|make_range:21 %}
+            {% for minute in times %}
+            <tr>
+              {% if forloop.first %}
+              <td>{{ hour }}:{{ minute }}</td>
+              {% else %}
+              <td></td>
+              {% endif %}
+              <td>{{ hour }}:{{ minute }}</td>
+              {% for court in all_courts %}
+                {% if event.start == hour and event.court == court %}
+                <td>{{ event.title }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+              {% endfor %}
+            </tr>
+            {% endfor %}
+            {% endfor %}
+              
+              
+          </tbody>
+      </table>
+
+</div>
+
+<script>
+// JavaScript code here 
+</script>
+{% endblock %}

@@ -2,10 +2,13 @@
 
 {% block body %}
 
-<h1>Court Booking System - Main Page</h1>
+<h1 class="col-lg-10 offset-lg-3 mb-4">Court Booking System - Main Page</h1>
 {% if user.is_authenticated %}
-    <h2>Hello, {{user}}</h2>
-    <h3><a href="{%url 'tcb:bookings' %}">Display bookings</a></h3>
+    <div class="col-lg-10 offset-lg-1">
+    <h2 class="">Hello, {{user}}</h2>
+    <h3 ><a href="{%url 'tcb:bookings' %}">Display my bookings </a></h3>
+    <h3><a href="{%url 'tcb:create_booking' %}">Book a Court</a></h3>
+    </div>
 {% endif %}
 
 

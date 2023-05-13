@@ -1,0 +1,23 @@
+{% extends "tcb/layout.html"%}
+
+{% block body %}
+<div class="container mb-4 offset-lg-4">
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+</div>
+
+<div>
+    <p>Player: {{booking.member}}</p>
+    <p>Court: {{booking.court}}</p>
+    <p>Date: {{booking.date}}</p>
+    <p>Start Time: {{booking.start_time}}</p>
+    <p>End Time: {{booking.end_time}}</p>
+    <p>Coach: {{booking.coach}}</p>
+    <p>Is Paid?: {{booking.is_paid}}</p>
+    <p></p>
+</div>
+
+
+
+{% endblock %}

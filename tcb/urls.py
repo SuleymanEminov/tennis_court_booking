@@ -14,4 +14,7 @@ urlpatterns = [
     # user profile
     path("user_profile", views.show_user_profile, name="user_profile"),
     path("update_profile", views.update_profile, name="update_profile"),
+
+    # calendar
+    path("calendar", views.calendar, name="calendar"),
 ]

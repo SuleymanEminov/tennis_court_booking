@@ -25,7 +25,10 @@ def login_view(request):
                 "message": "Invalid email and/or password."
             })
     else:
-        return render(request, "tcb/login.html")
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse("tcb:index"))
+        else:
+            return render(request, "tcb/login.html")
 
 
 def logout_view(request):

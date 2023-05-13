@@ -2,10 +2,59 @@
 
 {% block body %}
 
+<h1 class ='col-lg-10 offset-lg-3 mb-4'>Court Booking Form</h1>
 <form action="{% url 'tcb:create_booking'%}" method="post">
     {% csrf_token %}
-    {{form}}
-    <input class="btn btn-primary" type="submit" value="Book">
+    <div class=" col-lg-6 offset-lg-3">
+        {{form}}
+
+        <input class="btn btn-primary btn-block mt-3" type="submit" id="submit" value="Book" onclick="validateTimeInputs()">
+    </div>
 </form>
+
+{% if messages %}
+
+    {% for message in messages %}
+    <div class = 'alert alert-danger'>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+{% endif %}
+
+<script>
+
+config = {
+    noCalendar: true, // hide the calendar
+    enableTime: true, // show the time picker
+    clickOpens: true, // have to click the input to open the picker
+    dateFormat: "H:i", // set the format of the datetime string
+    time_24hr: true, // use 24-hour format for the time
+    minuteIncrement: 30, // set the interval to 30 minutes
+    dropdown: true // display the time picker as a dropdown
+    };
+    // initialize the datetime picker
+    flatpickr("#starttime-picker" , config);
+    flatpickr("#endtime-picker" , config);
+
+    
+    // validate the time inputs
+    function validateTimeInputs() {
+        var startInput = document.getElementById("starttime-picker");
+        var endInput = document.getElementById("endtime-picker");
+        var startTime = new Date("2000-01-01T" + startInput.value + ":00");
+        var endTime = new Date("2000-01-01T" + endInput.value + ":00");
+
+        if (endTime <= startTime) {
+            alert("End time must be greater than start time.");
+            endInput.focus();
+            return false;
+        }
+        else{
+
+            return true;
+        }
+    }
+</script>
     
 {% endblock %}
